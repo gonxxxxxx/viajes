@@ -146,8 +146,16 @@ const DESTINOS = [
     { n: 'Fruitport', f: [19, 23, 70, 81] }, { n: 'Rockford', f: [24, 27, 43] }, { n: 'Beechwood', f: [18] }, { n: 'Norton Shores', f: [35] }, { n: 'Hart', f: [84] }] },
 ];
 const fotoD = $('foto-d');
-$('paises').innerHTML = DESTINOS.map(p => `<div class="pais"><span class="sc">${p.pais}</span>${p.sitios.map(s =>
-  `<button class="sitio" data-f="${s.f.join(',')}">${s.n}<small>${s.f.length} ${s.f.length === 1 ? 'foto' : 'fotos'}</small></button>`).join('')}</div>`).join('');
+// Un desplegable por país: al abrirlo salen sus sitios; al abrir uno se cierran los demás
+const fotosTxt = n => `${n} ${n === 1 ? 'foto' : 'fotos'}`;
+$('paises').innerHTML = DESTINOS.map(p => {
+  const total = p.sitios.reduce((a, s) => a + s.f.length, 0);
+  return `<details><summary><b>${p.pais}</b><small class="sc">${p.sitios.length} ${p.sitios.length === 1 ? 'sitio' : 'sitios'} · ${fotosTxt(total)}</small><i>⌄</i></summary>
+    <div class="sitios">${p.sitios.map(s => `<button class="sitio" data-f="${s.f.join(',')}">${s.n}<small>${fotosTxt(s.f.length)}</small></button>`).join('')}</div></details>`;
+}).join('');
+$('paises').querySelectorAll('details').forEach(d => d.addEventListener('toggle', () => {
+  if (d.open) $('paises').querySelectorAll('details[open]').forEach(o => { if (o !== d) o.open = false; });
+}));
 $('paises').querySelectorAll('.sitio').forEach(b => {
   const f = b.dataset.f.split(',').map(Number);
   b.addEventListener('mouseenter', () => { fotoD.querySelector('img').src = `${F}pm_${pad(f[0])}.jpg`; fotoD.classList.add('on'); });
