@@ -13,21 +13,14 @@ P2.listo = fetch(F + 'fotos.json').then(r => r.json()).then(fotos => {
   return fotos;
 });
 
-/* ---------- Portada: los tres vídeos a la vez ---------- */
-// Cada vídeo arranca en cuanto tiene datos (el del centro pesa más y tarda algo más en llegar);
-// cuando los tres están listos se vuelven a poner a cero juntos para que vayan sincronizados.
-const videos = ['v1', 'v2', 'v3'].map($);
+/* ---------- Portada: el vídeo 2 a pantalla completa ---------- */
+// Arranca en cuanto tiene datos; si el navegador lo para mientras carga, se vuelve a lanzar.
+const videos = [$('v2')];
 const enPortada = () => !document.body.classList.contains('dentro');
-function arrancarVideos() {
-  videos.forEach(v => v.addEventListener('canplay', () => { if (enPortada() && v.paused) v.play().catch(() => {}); }));
-  const listos = videos.map(v => new Promise(res => v.readyState >= 3 ? res() : v.addEventListener('canplay', res, { once: true })));
-  Promise.all(listos).then(() => {
-    if (!enPortada()) return;
-    videos.forEach(v => { v.currentTime = 0; v.play().catch(() => {}); });
-  });
-  videos.forEach(v => v.play().catch(() => {}));
-}
-arrancarVideos();
+videos.forEach(v => {
+  ['canplay', 'pause'].forEach(ev => v.addEventListener(ev, () => { if (enPortada() && v.paused && v.readyState >= 3) v.play().catch(() => {}); }));
+  v.play().catch(() => {});
+});
 $('sonido').onclick = () => {
   const v = $('v2'); v.muted = !v.muted;
   $('sonido').setAttribute('aria-pressed', String(!v.muted));
