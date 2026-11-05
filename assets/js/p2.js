@@ -166,7 +166,7 @@ $('galeria-todo').onclick = () => abrirFoto(P2.orden[0]);
 // Vídeos de las tarjetas y del tráiler: solo se reproducen cuando se ven
 const enVista = new IntersectionObserver(es => es.forEach(e => { e.isIntersecting ? e.target.play().catch(() => {}) : e.target.pause(); }), { threshold: .2 });
 document.querySelectorAll('video[data-vista]').forEach(v => enVista.observe(v));
-$('ver-trailer').onclick = () => abrirVideo('assets/video/viaje2.mp4');
+$('ver-trailer').onclick = () => abrirVideo('assets/video/viaje2.mp4?v=202611051600');
 
 P2.listo.then(() => {
   const muestra = P2.orden.slice(0, 6);
