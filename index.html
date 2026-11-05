@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gonzalo Llinares — Viajes</title>
+<meta name="description" content="Fotografía y vídeo de viaje de Gonzalo Llinares, graduado en ADE + Marketing.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 fill=%27%23151515%27/%3E%3Ctext x=%2732%27 y=%2744%27 font-family=%27Georgia,serif%27 font-size=%2736%27 text-anchor=%27middle%27 fill=%27%23F9F9F5%27%3EG%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/p2.css">
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+</script>
+</head>
+<body class="cerrado">
+
+<!-- PORTADA: los tres vídeos a la vez, el 2 en el centro -->
+<div id="portada">
+  <div class="tres">
+    <video id="v1" src="assets/video/viaje1.mp4" poster="assets/video/viaje1.jpg" muted loop playsinline preload="auto"></video>
+    <video id="v2" src="assets/video/viaje2.mp4" poster="assets/video/viaje2.jpg" muted loop playsinline preload="auto"></video>
+    <video id="v3" src="assets/video/viaje3.mp4" poster="assets/video/viaje3.jpg" muted loop playsinline preload="auto"></video>
+  </div>
+  <div class="velo"></div>
+  <div class="marca">GONZALO LLINARES</div>
+  <div class="texto">
+    <span class="sc">Portfolio de viajes</span>
+    <h1>Mirar el mundo<br>despacio</h1>
+    <div class="sub">Fotografía y vídeo · Marketing</div>
+    <div class="acciones">
+      <button class="boton claro" id="entrar">Entrar</button>
+      <button class="boton claro" id="sonido">Activar sonido</button>
+    </div>
+  </div>
+  <div class="pie"><span class="sc">Fotos y vídeos propios</span><span class="sc">Pulsa «Entrar» o Intro</span></div>
+</div>
+
+<header>
+  <nav><a href="#que">Fotografía</a><a href="#destinos">Destinos</a><a href="#trailer">Vídeo</a><a href="#cv">CV</a></nav>
+  <a class="logo" href="#top">Gonzalo Llinares</a>
+  <div class="der"><a class="pildora" href="#" id="a-portada">Portada</a><a class="pildora" href="mailto:gonzalo.llm01@gmail.com">Escríbeme</a></div>
+</header>
+
+<main id="top">
+  <!-- Esfera de fotos: al bajar se abre y las fotos pasan al fondo -->
+  <section class="hero" id="hero">
+    <div class="escena">
+      <canvas id="esfera" aria-label="Esfera con mis fotos de viaje: arrástrala para girarla y pulsa una foto para verla en grande"></canvas>
+      <div class="pista sc">Arrastra para girar · pulsa una foto · baja</div>
+      <div class="texto" id="hero-texto">
+        <h2>Gonzalo Llinares</h2>
+        <p>254 fotos de viaje · Europa y Estados Unidos</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloque">
+    <div class="manifiesto" data-rev>
+      <p>Viajo con la cámara encendida. Me interesa cómo se <em>cuenta</em> un lugar: la luz, la calle y ese detalle que hace que alguien quiera ir.</p>
+      <div class="firma sc">Gonzalo Llinares · ADE + Marketing</div>
+    </div>
+  </section>
+
+  <section class="bloque" id="que">
+    <div class="titulo-s" data-rev><span class="sc">Qué hago</span><h3>Fotografía, vídeo y marketing</h3></div>
+    <div class="cartas">
+      <div class="carta lisa" data-rev>
+        <div class="dentro">
+          <h4>Fotografía</h4>
+          <div>
+            <p>254 fotos de viaje seleccionadas: calle, arquitectura y paisaje en Europa y Estados Unidos. Todas hechas por mí.</p>
+            <p class="sc" style="margin-top:18px;opacity:.7">Viajes · Calle · Arquitectura</p>
+          </div>
+        </div>
+      </div>
+      <div class="carta" data-rev>
+        <video src="assets/video/viaje3.mp4" poster="assets/video/viaje3.jpg" muted loop playsinline preload="metadata" data-vista></video>
+        <div class="dentro"><h4>Vídeo</h4><p>Planos aéreos y montaje de mis viajes.</p></div>
+      </div>
+      <div class="carta" data-rev>
+        <img src="assets/fotos/pm_054.jpg" alt="Chicago">
+        <div class="dentro"><h4>Marketing</h4><p>ADE + Marketing y 2.º puesto en la European Markstrat. Contar un destino también es venderlo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloque" id="destinos">
+    <div class="destinos" data-rev>
+      <div class="foto-d" id="foto-d"><img alt=""></div>
+      <span class="sc" style="position:relative;z-index:2;color:rgba(255,255,255,.7)">Donde he estado con la cámara</span>
+      <div class="region">
+        <h4>Europa</h4>
+        <ul>
+          <li data-foto="1">Berlín</li><li data-foto="48">París</li><li data-foto="119">Londres</li><li data-foto="196">Lisboa</li><li data-foto="229">Bélgica</li>
+        </ul>
+      </div>
+      <div class="region">
+        <h4>América</h4>
+        <ul><li data-foto="54">Chicago</li><li data-foto="55">Míchigan</li></ul>
+      </div>
+      <span class="sc" style="position:relative;z-index:2;color:rgba(255,255,255,.55)">Pasa el ratón por cada sitio</span>
+    </div>
+  </section>
+
+  <section class="bloque" id="trailer">
+    <div class="trailer" data-rev>
+      <video src="assets/video/viaje2.mp4" poster="assets/video/viaje2.jpg" muted loop playsinline preload="metadata" data-vista></video>
+      <div class="dentro">
+        <span class="sc">Tráiler</span>
+        <h4>En movimiento</h4>
+        <p>Un recorrido en vídeo por mis viajes, grabado y montado por mí.</p>
+        <div><button class="boton claro" id="ver-trailer">Ver con sonido</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloque">
+    <div class="carrete" data-rev>
+      <div>
+        <span class="sc" style="color:var(--gris)">El carrete</span>
+        <h4>254 fotos, una a una</h4>
+        <p>Mientras bajas por la página se van sumando al fondo. Aquí puedes verlas en grande, en un orden distinto cada vez.</p>
+        <button class="boton" id="ver-carrete">Ver el carrete</button>
+      </div>
+      <div class="mosaico" id="mosaico"></div>
+    </div>
+  </section>
+
+  <!-- CV: mismo texto y misma distribución que el CV de marketing, dentro de una ventana de cristal -->
+  <section class="bloque" id="cv">
+    <div class="titulo-s" data-rev><span class="sc">Currículum</span><h3>Mi CV</h3></div>
+    <div class="ventana" data-rev>
+      <div class="barra">
+        <span class="puntos"><i></i><i></i><i></i></span>
+        <span class="nombre-archivo">Gonzalo_Llinares_CV.pdf</span>
+        <span class="descargas"><a href="assets/cv/CV_ES_MARKETING.pdf" download>PDF ES ↓</a><a class="sec" href="assets/cv/CV_EN_MARKETING.pdf" download>PDF EN ↓</a></span>
+      </div>
+      <div class="cv">
+        <div class="cab">
+          <div>
+            <h1>Gonzalo Llinares Millet</h1>
+            <div class="titular">Marketing · Marca, e-commerce y contenido · ADE + Marketing</div>
+            <div class="contacto">
+              <span>Madrid · Valencia</span>
+              <span><a href="mailto:gonzalo.llm01@gmail.com">gonzalo.llm01@gmail.com</a></span>
+              <span><a href="tel:+34672402496">+34 672 40 24 96</a></span>
+              <span><a href="https://www.linkedin.com/in/gonzalo-llinares-2a94a626a" target="_blank">linkedin.com/in/gonzalo-llinares-2a94a626a</a></span>
+            </div>
+          </div>
+          <img class="retrato" src="assets/img/foto.jpg" alt="Gonzalo Llinares">
+        </div>
+        <div class="principal">
+          <section>
+            <h5>Perfil</h5>
+            <p>Graduado en ADE + Marketing que lleva el marketing a la práctica: <b>2.º puesto en la European Markstrat</b> (simulación de estrategia de marketing) y creación de una marca de moda con un equipo internacional en el programa BrandY. Manejo Shopify, WooCommerce, Photoshop, Illustrator y Premiere Pro, y automatizo contenido con IA: con Claude Code he creado un canal de YouTube que publica un vídeo al día solo. Hoy trabajo en gestión comercial en Moll Motor (180 vehículos/mes, 14 marcas).</p>
+          </section>
+          <section>
+            <h5>Experiencia</h5>
+            <div class="puesto">
+              <div class="linea"><strong>Técnico en Gestión Comercial y Ventas</strong><span class="fecha">Oct 2025 – actualidad</span></div>
+              <div class="empresa">Moll Motor S.L.</div>
+              <ul>
+                <li>Gestión comercial y administrativa de una media de <b>180 vehículos/mes</b> de <b>14 marcas</b>, desde la compra a marca hasta la matriculación.</li>
+                <li>Coordinación con los directores de venta de cada marca para cumplir objetivos mensuales, rappels y primas.</li>
+                <li>Revisión de márgenes y elaboración del informe BM que se reporta a las marcas.</li>
+                <li>Colaboración con el equipo de ingeniería para integrar IA en los procesos, aportando el conocimiento del flujo comercial.</li>
+                <li>Atención al cliente: gestión y resolución de llamadas.</li>
+              </ul>
+            </div>
+            <div class="puesto">
+              <div class="linea"><strong>Prácticas de agente comercial</strong><span class="fecha">Jul – Sep 2023</span></div>
+              <div class="empresa">Locatec S.L.</div>
+              <ul>
+                <li>Visitas a clientes y análisis de zonas con clientes potenciales.</li>
+                <li>Captación de nuevos clientes y elaboración de propuestas comerciales.</li>
+                <li>Creación de la base de datos de clientes visitados y captados.</li>
+              </ul>
+            </div>
+            <div class="puesto">
+              <div class="linea"><strong>Asistente de logística y almacén</strong><span class="fecha">Veranos 2020 y 2022</span></div>
+              <div class="empresa">Tecatel S.L.</div>
+              <ul><li>Preparación de pedidos, registro de entradas, gestión y recolocación de stock y devoluciones (RMA).</li></ul>
+            </div>
+            <div class="puesto">
+              <div class="linea"><strong>Asistente personal en formación</strong><span class="fecha">Jul – Ago 2018</span></div>
+              <div class="empresa">Gestión de Proyectos Gandía (GpG)</div>
+              <ul><li>Control de pagos de vecinos en Excel, gestión de quejas y cartas informativas a comunidades.</li></ul>
+            </div>
+          </section>
+          <section>
+            <h5>Proyectos de IA</h5>
+            <div class="proyecto"><strong>Canal de YouTube automático</strong> <em>· proyecto personal, 2026</em><p>Con Claude Code, un sistema que investiga temas, escribe guiones originales, los narra con voz sintética y monta vídeos largos de filosofía en castellano. Publica un vídeo nuevo cada día sin intervención manual.</p></div>
+            <div class="proyecto"><strong>Simulador de inversión con IA</strong> <em>· proyecto personal, 2026</em><p>App con dinero ficticio y tres bots (señales cuantitativas, noticias y operaciones de directivos) que combinan reglas con un modelo de IA local (Ollama), bajo un gestor de riesgo.</p></div>
+          </section>
+        </div>
+        <aside class="lateral">
+          <section>
+            <h5>Habilidades</h5>
+            <div class="etq">Marketing</div>
+            <p class="hab"><span>Estrategia de marketing</span><span>Gestión de marca</span><span>E-commerce</span><span>Contenido y vídeo</span><span>Análisis de zonas y clientes</span><span>Automatización con IA</span></p>
+            <div class="etq">Herramientas</div>
+            <p class="hab"><span>Shopify</span><span>WooCommerce</span><span>Photoshop</span><span>Illustrator</span><span>Premiere Pro</span><span>Excel</span><span>Claude Code / GPT</span><span>Quiter Auto (DMS)</span></p>
+            <div class="etq">Competencias</div>
+            <p class="hab"><span>Creatividad</span><span>Comunicación</span><span>Constancia</span><span>Resolución de problemas</span></p>
+          </section>
+          <section>
+            <h5>Idiomas</h5>
+            <div class="idioma"><span>Castellano y valenciano</span><span>Nativo</span></div>
+            <div class="idioma"><span>Inglés</span><span>C1 (TOEFL)</span></div>
+          </section>
+          <section>
+            <h5>Formación</h5>
+            <div class="item"><strong>ADE + Marketing</strong><span>Universidad CEU Cardenal Herrera · 2019 – 2024</span></div>
+            <div class="item"><strong>Año de bachillerato en EE. UU.</strong><span>Spring Lake High School · 2017 – 2018</span></div>
+          </section>
+          <section>
+            <h5>Logros</h5>
+            <div class="item"><strong>2.º puesto, European Markstrat</strong><span>Simulación de estrategia de marketing · Bucarest · 2024</span></div>
+            <div class="item"><strong>BrandY (Erasmus+)</strong><span>Creación de una marca de moda en un equipo internacional · Brujas · 2023</span></div>
+          </section>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloque">
+    <div class="contacto-f" data-rev>
+      <span class="sc" style="color:var(--gris)">Contacto</span>
+      <h3 style="margin-top:10px">¿Hablamos?</h3>
+      <p>Me gustaría poner mi mirada y mi formación en marketing al servicio de una marca de viajes.</p>
+      <a class="boton" href="mailto:gonzalo.llm01@gmail.com">Escríbeme</a>
+      <div class="enlaces">
+        <a href="tel:+34672402496">+34 672 40 24 96</a>
+        <a href="https://www.linkedin.com/in/gonzalo-llinares-2a94a626a" target="_blank">LinkedIn ↗</a>
+        <a href="https://instagram.com/gonzalo.llm" target="_blank">Instagram ↗</a>
+        <a href="https://vsco.co/gonzalo-llm" target="_blank">VSCO ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="sc">Fotos y vídeos: Gonzalo Llinares · 2026</footer>
+
+<div class="lb" id="lb">
+  <button class="cerrar" id="lbx">Cerrar ✕</button>
+  <button class="nav prev" id="lbp">‹</button>
+  <div id="lbmedia"></div>
+  <button class="nav next" id="lbn">›</button>
+  <span class="cnt sc" id="lbc"></span>
+</div>
+
+<script src="assets/js/p2.js"></script>
+<script type="module">
+// ---------- Esfera de fotos ----------
+import * as THREE from 'three';
+
+const hero = document.getElementById('hero'), canvas = document.getElementById('esfera'), texto = document.getElementById('hero-texto'), pista = document.querySelector('.hero .pista');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+const scene = new THREE.Scene();
+const cam = new THREE.PerspectiveCamera(45, 1, .1, 100);
+cam.position.z = 14;
+const grupo = new THREE.Group();
+scene.add(grupo);
+
+const fotos = await window.P2.listo;
+const elegidas = window.P2.orden.slice(0, 150).map(n => fotos[n]);
+const loader = new THREE.TextureLoader();
+const R = 5, N = elegidas.length, ORO = Math.PI * (3 - Math.sqrt(5));
+const mallas = elegidas.map((f, i) => {
+  const y = 1 - 2 * (i + .5) / N, r = Math.sqrt(1 - y * y), th = ORO * i;
+  const pos = new THREE.Vector3(Math.cos(th) * r * R, y * R, Math.sin(th) * r * R);
+  const alto = 1.15, ancho = alto * Math.min(1.6, Math.max(.62, f.r));
+  const tex = loader.load(`assets/fotos/pt_${String(f.n).padStart(3, '0')}.jpg`);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(ancho, alto), new THREE.MeshBasicMaterial({ map: tex, side: THREE.DoubleSide, transparent: true }));
+  m.position.copy(pos);
+  m.lookAt(pos.clone().multiplyScalar(2));
+  m.userData = { n: f.n, escala: 1 };
+  grupo.add(m);
+  return m;
+});
+
+// Arrastrar para girar (con inercia) y pulsar una foto para verla en grande
+let vx = .0016, vy = 0, arrastrando = false, px = 0, py = 0, movido = 0;
+const ray = new THREE.Raycaster(), puntero = new THREE.Vector2(-9, -9);
+canvas.addEventListener('pointerdown', e => { arrastrando = true; movido = 0; px = e.clientX; py = e.clientY; canvas.setPointerCapture(e.pointerId); });
+canvas.addEventListener('pointermove', e => {
+  const r = canvas.getBoundingClientRect();
+  puntero.set((e.clientX - r.left) / r.width * 2 - 1, -(e.clientY - r.top) / r.height * 2 + 1);
+  if (!arrastrando) return;
+  const dx = e.clientX - px, dy = e.clientY - py; px = e.clientX; py = e.clientY; movido += Math.abs(dx) + Math.abs(dy);
+  vx = dx * .004; vy = dy * .004;
+});
+canvas.addEventListener('pointerup', () => {
+  arrastrando = false;
+  if (movido < 6) { ray.setFromCamera(puntero, cam); const hit = ray.intersectObjects(mallas)[0]; if (hit) window.P2.abrirFoto(hit.object.userData.n); }
+});
+canvas.addEventListener('pointerleave', () => puntero.set(-9, -9));
+
+// Entrada: la esfera aparece girando cuando se pulsa «Entrar»
+let intro = 0, t0 = 0;
+addEventListener('entrar', () => { t0 = performance.now(); intro = 1; });
+
+function medir() { const w = canvas.clientWidth, h = canvas.clientHeight; renderer.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix(); }
+new ResizeObserver(medir).observe(canvas); medir();
+const suave = t => t * t * (3 - 2 * t);
+let hover = null;
+renderer.setAnimationLoop(now => {
+  const rh = hero.getBoundingClientRect();
+  const p = Math.min(1, Math.max(0, -rh.top / (rh.height - innerHeight)));
+  if (rh.bottom < 0) return; // ya pasó: no gastar
+  // Giro con inercia
+  if (!arrastrando) { vx += (.0016 - vx) * .02; vy *= .95; }
+  grupo.rotation.y += vx; grupo.rotation.x = Math.max(-.6, Math.min(.6, grupo.rotation.x + vy));
+  // Entrada
+  const e = intro ? Math.min(1, (now - t0) / 1600) : (document.body.classList.contains('dentro') ? 1 : .35);
+  const ent = suave(e);
+  // Al bajar: la esfera se abre, la cámara entra y las fotos se van al fondo
+  const s = suave(p);
+  grupo.scale.setScalar((.4 + .6 * ent) * (1 + s * 2.6));
+  cam.position.z = 14 - s * 11.5;
+  const alfa = 1 - suave(Math.min(1, Math.max(0, (p - .5) / .45)));
+  canvas.style.opacity = alfa;
+  texto.style.opacity = Math.max(0, 1 - p * 4) * ent;
+  pista.style.opacity = Math.max(0, 1 - p * 6) * ent;
+  // Foto bajo el ratón: un poco más grande
+  ray.setFromCamera(puntero, cam);
+  const hit = p < .2 ? ray.intersectObjects(mallas)[0] : null;
+  hover = hit ? hit.object : null;
+  for (const m of mallas) {
+    const obj = m === hover ? 1.35 : 1;
+    m.userData.escala += (obj - m.userData.escala) * .15;
+    m.scale.setScalar(m.userData.escala);
+    m.material.opacity = alfa;
+  }
+  canvas.style.cursor = hover ? 'zoom-in' : '';
+  renderer.render(scene, cam);
+});
+</script>
+</body>
+</html>
