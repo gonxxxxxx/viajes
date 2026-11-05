@@ -24,7 +24,8 @@ function arrancarVideos() {
 arrancarVideos();
 $('sonido').onclick = () => {
   const v = $('v2'); v.muted = !v.muted;
-  $('sonido').textContent = v.muted ? 'Activar sonido' : 'Silenciar';
+  $('sonido').setAttribute('aria-pressed', String(!v.muted));
+  $('sonido').querySelector('span').textContent = v.muted ? 'Activar sonido' : 'Silenciar';
 };
 let ocultar = null;
 function entrar() {
@@ -130,11 +131,30 @@ addEventListener('keydown', e => {
 const vistos = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); vistos.unobserve(e.target); } }), { threshold: .12 });
 document.querySelectorAll('[data-rev]').forEach(el => vistos.observe(el));
 
+// Destinos: sacados del GPS de las fotos (y Berlín, París, Londres y Lisboa reconocidos por el monumento).
+// f = números de foto de ese sitio; al pulsarlo se abre la galería solo con ellas.
+const DESTINOS = [
+  { pais: 'España', sitios: [{ n: 'Gandía', f: [86, 87, 89, 91, 96, 97, 102, 209] }, { n: 'Valencia', f: [88] }] },
+  { pais: 'Portugal', sitios: [{ n: 'Lisboa', f: [196] }] },
+  { pais: 'Francia', sitios: [{ n: 'París', f: [48] }, { n: 'Versalles', f: [45] }] },
+  { pais: 'Bélgica', sitios: [{ n: 'Bruselas', f: [208, 212, 213, 215, 216, 219, 221, 222, 223, 224, 227] }, { n: 'Brujas', f: [210, 226, 228] }, { n: 'Amberes', f: [218, 229] }, { n: 'Gante', f: [220] }] },
+  { pais: 'Países Bajos', sitios: [{ n: 'Ámsterdam', f: [3, 4, 12] }, { n: 'Zwolle', f: [5] }] },
+  { pais: 'Alemania', sitios: [{ n: 'Berlín', f: [1, 245, 248] }] },
+  { pais: 'Reino Unido', sitios: [{ n: 'Londres', f: [119] }, { n: 'Paignton', f: [77] }] },
+  { pais: 'Estados Unidos', sitios: [{ n: 'Chicago', f: [51, 52, 53, 54, 55, 56, 57, 59, 60, 61, 63, 75] }, { n: 'Whiting (Indiana)', f: [65] }] },
+  { pais: 'Míchigan', sitios: [{ n: 'Grand Haven', f: [20, 26, 28, 33, 34, 41, 42, 44, 66, 68, 69, 71, 74, 76, 78, 79, 83] }, { n: 'Spring Lake', f: [40, 67, 73, 80, 85] },
+    { n: 'Fruitport', f: [19, 23, 70, 81] }, { n: 'Rockford', f: [24, 27, 43] }, { n: 'Beechwood', f: [18] }, { n: 'Norton Shores', f: [35] }, { n: 'Hart', f: [84] }] },
+];
 const fotoD = $('foto-d');
-document.querySelectorAll('.destinos li[data-foto]').forEach(li => {
-  li.addEventListener('mouseenter', () => { fotoD.querySelector('img').src = `${F}pm_${pad(+li.dataset.foto)}.jpg`; fotoD.classList.add('on'); });
-  li.addEventListener('mouseleave', () => fotoD.classList.remove('on'));
+$('paises').innerHTML = DESTINOS.map(p => `<div class="pais"><span class="sc">${p.pais}</span>${p.sitios.map(s =>
+  `<button class="sitio" data-f="${s.f.join(',')}">${s.n}<small>${s.f.length} ${s.f.length === 1 ? 'foto' : 'fotos'}</small></button>`).join('')}</div>`).join('');
+$('paises').querySelectorAll('.sitio').forEach(b => {
+  const f = b.dataset.f.split(',').map(Number);
+  b.addEventListener('mouseenter', () => { fotoD.querySelector('img').src = `${F}pm_${pad(f[0])}.jpg`; fotoD.classList.add('on'); });
+  b.addEventListener('mouseleave', () => fotoD.classList.remove('on'));
+  b.addEventListener('click', () => abrirFoto(f[0], f));
 });
+$('galeria-todo').onclick = () => abrirFoto(P2.orden[0]);
 
 // Vídeos de las tarjetas y del tráiler: solo se reproducen cuando se ven
 const enVista = new IntersectionObserver(es => es.forEach(e => { e.isIntersecting ? e.target.play().catch(() => {}) : e.target.pause(); }), { threshold: .2 });
@@ -153,8 +173,8 @@ P2.listo.then(() => {
     fotos: P2.orden, tope: 150,
     umbral: k => {
       const H = innerHeight, largo = hero.offsetHeight - H;
-      if (k < 60) return (.3 + k / 60 * .65) * largo;
-      return largo + (k - 59) * .14 * H;
+      if (k < 120) return (.22 + k / 120 * .74) * largo;
+      return largo + (k - 119) * .14 * H;
     },
   });
   P2.muro = muro;
